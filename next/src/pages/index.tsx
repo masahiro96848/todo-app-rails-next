@@ -1,13 +1,20 @@
 import type { NextPage } from 'next'
-import { Box, Heading, Button, ButtonGroup } from '@chakra-ui/react'
+import useSWR from 'swr'
+import { fetcher } from '../../lib/axiosClient'
 
-const Page: NextPage = () => {
+const Index: NextPage = () => {
+  const url = 'http://localhost:3000/api/v1/todo'
+  const { data, error } = useSWR(url, fetcher)
+
+  if (error) return <div>An error has occurred.</div>
+  if (!data) return <div>Loading...</div>
+
   return (
-    <Box>
-      <Heading>Chakra UI</Heading>
-      <Button colorScheme="blue">Button</Button>
-    </Box>
+    <>
+      <div>Rails疎通確認</div>
+      <div>レスポンスメッセージ: {data.message}</div>
+    </>
   )
 }
 
-export default Page
+export default Index
