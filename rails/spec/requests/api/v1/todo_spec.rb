@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "Api::V1::HealthCheck", type: :request do
+RSpec.describe "Api::V1::Todo", type: :request do
   describe "GET api/v1/todo" do
-    subject { get(api_v1_todo_path)}
+    subject { get(api_v1_todo_path) }
 
     it "正常にレスポンスが返る" do
       subject
